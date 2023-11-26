@@ -9,14 +9,12 @@ export default function TaskList({ handleDelete, taskList, parent, setVisible, v
             {taskList.map(({task, id}) => (
                     <li key={id}>
                         <p>{task}</p>
-                        <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Are you sure you want to delete the task?"
+                        <ConfirmDialog visible={visible[id]} onHide={() => setVisible(false)} message="Are you sure you want to delete the task?"
     header="Confirmation" icon="pi pi-exclamation-triangle" accept={() => handleDelete(id)} reject={() => setVisible(false)} />
                         <input 
                             type="button" 
                             value="&#9747;" 
-                            onClick={() => {
-                                setVisible(true)
-                            }} 
+                            onClick={() => setVisible(prev => ({...prev, [id]: true}))} 
                             className="delete-task" 
                         />
                     </li>

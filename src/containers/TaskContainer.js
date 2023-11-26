@@ -14,7 +14,7 @@ export default function TaskContainer() {
         const savedTodos = JSON.parse(temp);
         return (savedTodos || []);
     });
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState({});
 
     const [parent, enableAnimations] = useAutoAnimate();
 
