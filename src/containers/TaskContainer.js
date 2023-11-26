@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewTask from "../components/NewTask";
 import TaskList from "../components/TaskList";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 
 export default function TaskContainer() {
     const [newTask, setNewTask] = useState({
         task: '',
         id: null
     });
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState(() => {
+        const temp = localStorage.getItem('taskList');
+        const savedTodos = JSON.parse(temp);
+        return (savedTodos || []);
+    });
+    const [visible, setVisible] = useState(false);
+
     const [parent, enableAnimations] = useAutoAnimate();
+
+    useEffect(() => {
+        const temp = JSON.stringify(taskList);
+        localStorage.setItem('taskList', temp);
+    }, [taskList]);
+
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -36,7 +49,7 @@ export default function TaskContainer() {
     return (
         <div>
             <NewTask handleChange={handleChange} handleSubmit={handleSubmit} newTask={newTask} />
-            <TaskList handleDelete={handleDelete} taskList={taskList} parent={parent} />
+            <TaskList handleDelete={handleDelete} taskList={taskList} parent={parent} setVisible={setVisible} visible={visible} />
         </div>
     )
 
