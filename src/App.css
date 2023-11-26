@@ -4,36 +4,38 @@ html {
 }
 
 body {
-  font-family: 'Istok Web', sans-serif;
+  font-family: 'Inconsolata', monospace;
   margin: 0 auto;
 }
 
 h1 {
   margin: inherit;
+
 }
 
 form {
+  margin-top: 1rem;
   width: 50%;
   border: solid 2px rgba(0, 0, 0, 1) ;
   outline: 2px;
+  min-height: 5rem;
+  height: auto;
 }
 
 #task-details {
-  margin: .25rem 0;
-  padding-left: 8px;
+  /* margin: 0.5rem; */
+  padding: 0.75rem;
   font-family: inherit;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   width: 95%;
-  max-height: 5rem;
   border: 0px solid transparent;
   outline: none;
+  resize: none;
 }
-
-
 
 #submit-todo {
   margin: 1% 1% 1% auto;
-  padding: 5px;
+  padding: .5rem;
   display: block;
   font-family: inherit;
   color: gray;
@@ -73,10 +75,22 @@ p {
   font-family: 'Caveat', cursive;
   font-size: 2rem;
   margin: 0;
-  padding: 2px;
+  padding: 1rem;
 }
 
-li > input {
+.delete-task {
   display: block;
-  margin: 0 1% 0 auto;
+  margin: 0 1% 1% auto;
+  padding: .5rem ;
+  display: block;
+  font-family: inherit;
+  border: solid 0px transparent;
+  border-radius: 0.25rem;
+
+}
+
+.delete-task:hover, .delete-task:active {
+  background-color: darkgray;
+  transition: all .5s ease-out;
+  cursor: pointer;
 }
