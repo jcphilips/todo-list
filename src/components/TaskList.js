@@ -1,8 +1,8 @@
-export default function TaskList({ handleDelete, taskList }) {
+export default function TaskList({ handleDelete, taskList, parent }) {
     return (
-        <ul>
+        <ul ref={parent}>
             {taskList.map(({task, id}) => (
-                    <li key={id} >
+                    <li key={id}>
                         <p>{task}</p>
                         <input type="button" value="X" onClick={() => handleDelete(id)} />
                     </li>

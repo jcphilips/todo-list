@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import NewTask from "../components/NewTask";
 import TaskList from "../components/TaskList";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function TaskContainer() {
     const [newTask, setNewTask] = useState({
         task: '',
         id: null
-    })
-    const [taskList, setTaskList] = useState([])
+    });
+    const [taskList, setTaskList] = useState([]);
+    const [parent, enableAnimations] = useAutoAnimate();
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -27,14 +29,14 @@ export default function TaskContainer() {
 
     const handleDelete = id => {
         setTaskList(prev => prev.filter(
-            (task) => task.id != id
+            (task) => task.id !== id
         ))
     }
 
     return (
         <div>
             <NewTask handleChange={handleChange} handleSubmit={handleSubmit} newTask={newTask} />
-            <TaskList handleDelete={handleDelete} taskList={taskList} />
+            <TaskList handleDelete={handleDelete} taskList={taskList} parent={parent} />
         </div>
     )
 
